@@ -1,8 +1,10 @@
 <div class="coin">
     <img class="coin__img" width="26" height="26" alt="" src="{{guy.iconUrl}}"/>
     <span class="coin__name">{{guy.name}}</span>
-    <span class="coin__price">{{guy.price.split(".")[0] + "." + guy.price.split(".")[1].slice(0, 4)}}</span>
+    <span class="coin__price">$ {{guy.price.split(".")[0] + "." + guy.price.split(".")[1].slice(0, 4)}}</span>
   </div>
-<button (click)="pleasefuckingwork()" routerLink="/generic/btc">btc</button>
-<button (click)="pleasefuckingwork()" routerLink="/generic/eth">eth</button>
-<button (click)="pleasefuckingwork()" routerLink="/generic/doge">dog</button>
+<button (click)="pleasefuckingwork('')" routerLink="/generic/btc">btc</button>
+<button (click)="pleasefuckingwork('')" routerLink="/generic/eth">eth</button>
+<button (click)="pleasefuckingwork('')" routerLink="/generic/doge">dog</button>
+<br>
+<button *ngFor="let item of xxx" (click)="pleasefuckingwork(item.uuid)">{{item.name}}</button>

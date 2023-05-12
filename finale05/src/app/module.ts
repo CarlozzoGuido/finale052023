@@ -1,4 +1,4 @@
-export interface Pokedex {
+export interface Cryptocoin {
     status: string;
     data:   Data;
 }

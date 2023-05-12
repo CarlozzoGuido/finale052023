@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Coin, Pokedex } from '../module';
+import { Coin, Cryptocoin } from '../module';
 
 @Component({
   selector: 'app-generic',
@@ -12,8 +12,16 @@ export class GenericComponent {
   //@ts-ignore
   guy: Coin = {};
   link: string = "";
+  xxx: Coin[] = []
+
   constructor(private route: ActivatedRoute, public http: HttpClient) {
-    this.pleasefuckingwork();
+    this.pleasefuckingwork("");
+    this.http.get("https://api.coinranking.com/v2/coins").subscribe(baller => {
+        
+      //@ts-ignoreS
+      this.xxx  = baller.data.coins;
+    })
+
     setInterval(() => {
       this.http.get(this.link).subscribe(baller => {
         
@@ -25,9 +33,14 @@ export class GenericComponent {
 
  }
 
- pleasefuckingwork = () => {
-  this.route.paramMap.subscribe(this.getRouterParam);
+ pleasefuckingwork = (a: string) => {
+  if (a != "") {
+    this.link = "https://api.coinranking.com/v2/coin/" + a;
+  } else {
+    this.route.paramMap.subscribe(this.getRouterParam);
+  }
  } 
+ 
  getRouterParam = (params: ParamMap) =>
   {    
     let uri_param = params.get('id'); //Ottengo l'id dalla ParamMap
